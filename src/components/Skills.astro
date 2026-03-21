@@ -19,11 +19,11 @@ const skillCategories = [
 
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {skillCategories.map((category) => (
-        <div class="card-interactive rounded-xl border border-border border-t-2 border-t-transparent bg-surface-elevated p-6 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-glow-border hover:border-t-accent hover:bg-glow-bg hover:shadow-[0_0_25px_var(--color-glow-shadow)] active:scale-[0.98] motion-reduce:transition-none motion-reduce:hover:transform-none">
-          <h4 class="mb-4 text-sm font-semibold uppercase tracking-wider text-accent-muted">{category.title}</h4>
+        <div class="section-card card-interactive rounded-xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900/40 p-6 shadow-sm dark:shadow-none transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:shadow-md hover:border-zinc-300 dark:hover:border-white/20 dark:hover:shadow-[0_0_25px_var(--color-glow-shadow)] active:scale-[0.98] motion-reduce:transition-none motion-reduce:hover:transform-none">
+          <h4 class="mb-5 text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">{category.title}</h4>
           <div class="flex flex-wrap gap-2">
             {category.items.map((item) => (
-              <span class="rounded-md border border-tag-border bg-tag-bg px-3 py-1.5 text-sm text-tag-text transition-all duration-200 hover:border-glow-border hover:bg-glow-bg hover:text-accent hover:shadow-[0_0_12px_var(--color-glow-shadow)]">{item}</span>
+              <span class="rounded-md border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-zinc-800/50 px-3 py-1.5 text-sm text-zinc-700 dark:text-zinc-300 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-sm hover:border-zinc-400 dark:hover:border-zinc-500 hover:bg-white dark:hover:bg-zinc-700/50">{item}</span>
             ))}
           </div>
         </div>
