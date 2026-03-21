@@ -30,6 +30,21 @@ const lang = getLangFromUrl(Astro.url);
     <link rel="preload" href="/fonts/Geist-Bold.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/GeistMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
 
+    <!-- Liquid Glass gooey SVG filter -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="absolute h-0 w-0" aria-hidden="true">
+      <defs>
+        <filter id="liquid-gooey" color-interpolation-filters="sRGB">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
+          <feColorMatrix in="blur" mode="matrix"
+            values="1 0 0 0 0
+                    0 1 0 0 0
+                    0 0 1 0 0
+                    0 0 0 18 -7" result="goo" />
+          <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+        </filter>
+      </defs>
+    </svg>
+
     <!-- Theme init: runs before paint to prevent flash -->
     <script is:inline>
       (function() {
