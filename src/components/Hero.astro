@@ -17,14 +17,6 @@ const lang = getLangFromUrl(Astro.url);
 
   <div class="relative z-10 mx-auto max-w-4xl">
     <div class="mb-10 text-center">
-      <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-surface-elevated px-4 py-1.5 text-sm text-text-accent-soft transition-all duration-300 hover:border-glow-border hover:shadow-[0_0_15px_var(--color-glow-shadow)]">
-        <span class="relative flex h-2 w-2">
-          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500/50 opacity-75"></span>
-          <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-500/70"></span>
-        </span>
-        {t(lang, "hero.available")}
-      </div>
-
       <h1 class="mb-4 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
         <span class="text-title-section">Daniel Santiago</span><br />
         <span class="text-blue-600 dark:text-blue-400">Silva Fonseca</span>
@@ -43,7 +35,7 @@ const lang = getLangFromUrl(Astro.url);
       <TerminalHero client:load />
     </div>
 
-    <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
+    <div class="mb-16 flex flex-col items-center justify-center gap-4 sm:flex-row">
       <LiquidButton text={t(lang, "hero.cta")} href="#experience" type="primary">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="m6 9 6 6 6-6"/>
