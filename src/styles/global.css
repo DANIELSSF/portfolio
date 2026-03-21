@@ -40,6 +40,8 @@
   font-display: swap;
 }
 
+@variant dark (&:where(:not(.light), :not(.light) *));
+
 @theme {
   --font-sans: "Geist Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Geist Mono", ui-monospace, monospace;
@@ -85,10 +87,10 @@
   --color-surface-elevated: #ffffff;
   --color-surface-tag: #e4e4e7;
   --color-border: #c4c4cc;
-  --color-text-primary: #3f3f46;
-  --color-text-secondary: #52525b;
-  --color-text-muted: #a1a1aa;
-  --color-text-heading: #18181b;
+  --color-text-primary: #27272a;
+  --color-text-secondary: #3f3f46;
+  --color-text-muted: #71717a;
+  --color-text-heading: #09090b;
   --color-glow: rgba(12, 74, 110, 0.12);
   --color-glow-border: rgba(12, 74, 110, 0.45);
   --color-glow-bg: rgba(12, 74, 110, 0.05);
@@ -102,7 +104,7 @@
   --color-dot-bg: rgba(196, 196, 204, 1);
   --color-title-section: #1d4ed8;
   --color-title-card: #0369a1;
-  --color-text-accent-soft: rgba(12, 74, 110, 0.5);
+  --color-text-accent-soft: #1e6091;
   color-scheme: light;
 }
 
