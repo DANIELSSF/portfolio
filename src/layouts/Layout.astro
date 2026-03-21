@@ -1,0 +1,92 @@
+---
+import SEO from "@/components/SEO.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import BackToTop from "@/components/BackToTop.astro";
+import { getLangFromUrl } from "@/i18n/translations";
+import "@/styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  type?: "website" | "article";
+}
+
+const { title, description, image, type } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <SEO title={title} description={description} image={image} type={type} />
+    <meta name="view-transition" content="same-origin" />
+
+    <!-- Preload Geist fonts to prevent FOUT -->
+    <link rel="preload" href="/fonts/Geist-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Geist-Medium.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Geist-SemiBold.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Geist-Bold.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/GeistMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!-- Theme init: runs before paint to prevent flash -->
+    <script is:inline>
+      (function() {
+        var stored = localStorage.getItem("theme");
+        var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var theme = stored || (prefersDark ? "dark" : "light");
+        if (theme === "light") {
+          document.documentElement.classList.add("light");
+        } else {
+          document.documentElement.classList.remove("light");
+        }
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen bg-surface text-text-primary font-sans">
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <BackToTop />
+
+    <!-- Card mouse-tracking glow -->
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll(".card-interactive").forEach(function(card) {
+          card.addEventListener("mousemove", function(e) {
+            var rect = card.getBoundingClientRect();
+            var x = ((e.clientX - rect.left) / rect.width) * 100;
+            var y = ((e.clientY - rect.top) / rect.height) * 100;
+            card.style.setProperty("--mouse-x", x + "%");
+            card.style.setProperty("--mouse-y", y + "%");
+          });
+        });
+      });
+    </script>
+
+    <!-- Theme toggle logic -->
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", function() {
+        var toggles = document.querySelectorAll("#theme-toggle");
+        toggles.forEach(function(btn) {
+          btn.addEventListener("click", function() {
+            var isLight = document.documentElement.classList.contains("light");
+            var next = isLight ? "dark" : "light";
+            document.documentElement.classList.toggle("light", next === "light");
+            localStorage.setItem("theme", next);
+          });
+        });
+
+        // Listen for system theme changes
+        window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function(e) {
+          if (!localStorage.getItem("theme")) {
+            document.documentElement.classList.toggle("light", !e.matches);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

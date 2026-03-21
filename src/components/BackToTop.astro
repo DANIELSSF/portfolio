@@ -1,0 +1,33 @@
+---
+
+---
+
+<button
+  id="back-to-top"
+  class="fixed bottom-6 right-6 z-40 flex h-10 w-10 items-center justify-center rounded-full border border-border bg-surface-elevated opacity-0 shadow-lg backdrop-blur-md transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-110 hover:border-glow-border hover:bg-glow-bg hover:shadow-[0_0_15px_var(--color-glow-shadow)]"
+  aria-label="Volver arriba"
+  style="pointer-events: none;"
+>
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-text-secondary">
+    <path d="m18 15-6-6-6 6" />
+  </svg>
+</button>
+
+<script>
+  const btn = document.getElementById("back-to-top");
+
+  window.addEventListener("scroll", () => {
+    if (!btn) return;
+    if (window.scrollY > 500) {
+      btn.style.opacity = "1";
+      btn.style.pointerEvents = "auto";
+    } else {
+      btn.style.opacity = "0";
+      btn.style.pointerEvents = "none";
+    }
+  });
+
+  btn?.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+</script>

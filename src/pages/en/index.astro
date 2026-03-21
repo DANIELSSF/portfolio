@@ -1,0 +1,37 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/Hero.astro";
+import Experience from "@/components/Experience.astro";
+import Projects from "@/components/Projects.astro";
+import Skills from "@/components/Skills.astro";
+import Education from "@/components/Education.astro";
+import Contact from "@/components/Contact.astro";
+import ScrollReveal from "@/components/ScrollReveal";
+---
+
+<Layout
+  title="Daniel Silva – Full Stack Engineer"
+  description="Full Stack Engineer specialized in Node.js, NestJS, TypeScript and cloud ecosystems. Experience in RESTful APIs, microservices and AI integration."
+>
+  <Hero />
+  <div class="mx-auto h-px w-2/3 max-w-xl bg-gradient-to-r from-transparent via-accent/15 to-transparent"></div>
+  <ScrollReveal client:load>
+    <Experience />
+  </ScrollReveal>
+  <div class="mx-auto h-px w-2/3 max-w-xl bg-gradient-to-r from-transparent via-accent/15 to-transparent"></div>
+  <ScrollReveal client:load delay={0.1}>
+    <Projects />
+  </ScrollReveal>
+  <div class="mx-auto h-px w-2/3 max-w-xl bg-gradient-to-r from-transparent via-accent/15 to-transparent"></div>
+  <ScrollReveal client:load delay={0.1}>
+    <Skills />
+  </ScrollReveal>
+  <div class="mx-auto h-px w-2/3 max-w-xl bg-gradient-to-r from-transparent via-accent/15 to-transparent"></div>
+  <ScrollReveal client:load delay={0.1}>
+    <Education />
+  </ScrollReveal>
+  <div class="mx-auto h-px w-2/3 max-w-xl bg-gradient-to-r from-transparent via-accent/15 to-transparent"></div>
+  <ScrollReveal client:load delay={0.1}>
+    <Contact />
+  </ScrollReveal>
+</Layout>

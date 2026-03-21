@@ -1,0 +1,32 @@
+---
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout
+  title="404 – Página no encontrada"
+  description="La página que buscas no existe o fue movida."
+>
+  <section class="flex min-h-screen items-center justify-center px-6">
+    <div class="text-center">
+      <div class="mb-6 font-mono text-8xl font-bold text-accent/10 sm:text-9xl">
+        404
+      </div>
+      <h1 class="mb-4 text-2xl font-bold tracking-tight text-text-heading sm:text-3xl">
+        Página no encontrada
+      </h1>
+      <p class="mb-8 text-text-primary">
+        La página que buscas no existe o fue movida.
+      </p>
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 rounded-lg bg-btn-primary-bg px-6 py-3 text-sm font-medium text-btn-primary-text transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.01] hover:bg-btn-primary-bg-hover"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m12 19-7-7 7-7" />
+          <path d="M19 12H5" />
+        </svg>
+        Volver al inicio
+      </a>
+    </div>
+  </section>
+</Layout>

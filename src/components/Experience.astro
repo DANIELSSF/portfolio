@@ -1,0 +1,80 @@
+---
+import { getLangFromUrl, t } from "@/i18n/translations";
+const lang = getLangFromUrl(Astro.url);
+
+const experiences = [
+  {
+    company: t(lang, "exp.estrellas.company"),
+    role: t(lang, "exp.estrellas.role"),
+    period: t(lang, "exp.estrellas.period"),
+    description: [t(lang, "exp.estrellas.desc1"), t(lang, "exp.estrellas.desc2"), t(lang, "exp.estrellas.desc3"), t(lang, "exp.estrellas.desc4")],
+    tech: ["Node.js", "TypeScript", "Go", "GCP", "MongoDB", "PostgreSQL"],
+  },
+  {
+    company: t(lang, "exp.fox.company"),
+    role: t(lang, "exp.fox.role"),
+    period: t(lang, "exp.fox.period"),
+    description: [t(lang, "exp.fox.desc1"), t(lang, "exp.fox.desc2")],
+    tech: ["NestJS", "ReactJS", "MySQL", "OpenAI", "Meta API", "AWS S3"],
+  },
+  {
+    company: t(lang, "exp.tcc.company"),
+    role: t(lang, "exp.tcc.role"),
+    period: t(lang, "exp.tcc.period"),
+    description: [t(lang, "exp.tcc.desc1"), t(lang, "exp.tcc.desc2")],
+    tech: ["NestJS", "AstroJS", "PostgreSQL", "Pasarela de Pagos"],
+  },
+  {
+    company: t(lang, "exp.gsm.company"),
+    role: t(lang, "exp.gsm.role"),
+    period: t(lang, "exp.gsm.period"),
+    description: [t(lang, "exp.gsm.desc1")],
+    tech: ["AstroJS", "Tailwind CSS", "Node.js", "SEO"],
+  },
+];
+---
+
+<section id="experience" class="py-24 px-6">
+  <div class="mx-auto max-w-5xl">
+    <h2 class="mb-2 text-sm font-semibold uppercase tracking-widest text-accent">{t(lang, "experience.subtitle")}</h2>
+    <h3 class="mb-12 text-3xl font-bold tracking-tight text-text-heading sm:text-4xl">{t(lang, "experience.title")}</h3>
+
+    <div class="relative">
+      <div class="absolute left-0 top-0 hidden h-full w-px bg-gradient-to-b from-accent/40 via-accent/15 to-accent/5 md:block md:left-[7px]"></div>
+      <div class="space-y-12">
+        {experiences.map((exp) => (
+          <article class="group relative md:pl-12">
+            <div class="absolute left-0 top-1.5 hidden h-[15px] w-[15px] items-center justify-center md:flex">
+              <div class="h-3 w-3 rounded-full border-2 border-accent/60 bg-accent/10 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:border-accent group-hover:bg-accent/40 group-hover:shadow-[0_0_8px_var(--color-glow-shadow)]" />
+            </div>
+
+            <div class="card-interactive rounded-xl border border-border border-l-2 border-l-transparent bg-surface-elevated p-6 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-glow-border hover:border-l-accent hover:bg-glow-bg hover:shadow-[0_0_25px_var(--color-glow-shadow)] active:scale-[0.98] motion-reduce:transition-none motion-reduce:hover:transform-none">
+              <div class="mb-4 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <h4 class="text-lg font-semibold text-text-heading transition-colors duration-200 group-hover:text-accent">{exp.company}</h4>
+                  <p class="text-sm text-accent-muted">{exp.role}</p>
+                </div>
+                <time class="text-sm text-text-muted font-mono">{exp.period}</time>
+              </div>
+
+              <ul class="mb-4 space-y-2">
+                {exp.description.map((item) => (
+                  <li class="flex gap-2 text-sm leading-relaxed text-text-primary">
+                    <span class="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent/50" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <div class="flex flex-wrap gap-2">
+                {exp.tech.map((tch) => (
+                  <span class="rounded-full border border-tag-border bg-tag-bg px-3 py-1 text-xs text-tag-text transition-all duration-200 hover:border-glow-border hover:bg-glow-bg hover:text-accent">{tch}</span>
+                ))}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

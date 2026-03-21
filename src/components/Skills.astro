@@ -1,0 +1,33 @@
+---
+import { getLangFromUrl, t } from "@/i18n/translations";
+const lang = getLangFromUrl(Astro.url);
+
+const skillCategories = [
+  { title: t(lang, "skills.languages"), items: ["JavaScript", "TypeScript", "Go", "SQL", "NoSQL"] },
+  { title: t(lang, "skills.backend"), items: ["Node.js", "NestJS", "Express.js", "REST APIs", "Microservicios", "SOLID", "Clean Code", "Swagger"] },
+  { title: t(lang, "skills.frontend"), items: ["React.js", "Next.js", "Astro.js", "Tailwind CSS"] },
+  { title: t(lang, "skills.databases"), items: ["MongoDB", "PostgreSQL", "MySQL", "OracleSQL"] },
+  { title: t(lang, "skills.cloud"), items: ["GCP (Cloud Run, GCS)", "AWS (S3, EC2, RDS)", "Docker", "Git / GitHub"] },
+  { title: t(lang, "skills.integrations"), items: ["OpenAI API", "Meta API (WhatsApp)", "Google Calendar API", "PayPal"] },
+];
+---
+
+<section id="skills" class="py-24 px-6">
+  <div class="mx-auto max-w-5xl">
+    <h2 class="mb-2 text-sm font-semibold uppercase tracking-widest text-accent">{t(lang, "skills.subtitle")}</h2>
+    <h3 class="mb-12 text-3xl font-bold tracking-tight text-text-heading sm:text-4xl">{t(lang, "skills.title")}</h3>
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {skillCategories.map((category) => (
+        <div class="card-interactive rounded-xl border border-border border-t-2 border-t-transparent bg-surface-elevated p-6 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-glow-border hover:border-t-accent hover:bg-glow-bg hover:shadow-[0_0_25px_var(--color-glow-shadow)] active:scale-[0.98] motion-reduce:transition-none motion-reduce:hover:transform-none">
+          <h4 class="mb-4 text-sm font-semibold uppercase tracking-wider text-accent-muted">{category.title}</h4>
+          <div class="flex flex-wrap gap-2">
+            {category.items.map((item) => (
+              <span class="rounded-md border border-tag-border bg-tag-bg px-3 py-1.5 text-sm text-tag-text transition-all duration-200 hover:border-glow-border hover:bg-glow-bg hover:text-accent hover:shadow-[0_0_12px_var(--color-glow-shadow)]">{item}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,109 @@
+---
+import LanguageToggle from "./LanguageToggle.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+import { getLangFromUrl, t } from "@/i18n/translations";
+
+const lang = getLangFromUrl(Astro.url);
+const base = lang === "en" ? "/en" : "";
+
+const navLinks = [
+  { label: t(lang, "nav.home"), href: `${base}/#hero` },
+  { label: t(lang, "nav.experience"), href: `${base}/#experience` },
+  { label: t(lang, "nav.projects"), href: `${base}/#projects` },
+  { label: t(lang, "nav.skills"), href: `${base}/#skills` },
+  { label: t(lang, "nav.blog"), href: "/blog" },
+  { label: t(lang, "nav.contact"), href: `${base}/#contact` },
+];
+---
+
+<header
+  class="fixed top-0 z-50 w-full border-b border-border bg-surface/80 backdrop-blur-md"
+>
+  <nav class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+    <a
+      href={base || "/"}
+      class="text-lg font-semibold tracking-tight text-text-heading transition-colors duration-200 hover:text-accent"
+    >
+      daniel<span class="text-accent">.</span>dev
+    </a>
+    <div class="hidden items-center gap-6 md:flex">
+      <ul class="flex items-center gap-6">
+        {
+          navLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="nav-link relative text-sm text-text-secondary transition-colors duration-200 hover:text-accent"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="flex items-center gap-2 border-l border-border pl-4">
+        <ThemeToggle />
+        <LanguageToggle />
+      </div>
+    </div>
+    <div class="flex items-center gap-2 md:hidden">
+      <ThemeToggle />
+      <LanguageToggle />
+      <button
+        id="mobile-menu-btn"
+        class="flex items-center justify-center rounded-md p-2 text-text-secondary transition-colors duration-200 hover:text-accent"
+        aria-label="Abrir menú"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </nav>
+  <div
+    id="mobile-menu"
+    class="hidden border-t border-border bg-surface/95 backdrop-blur-md md:hidden"
+  >
+    <ul class="flex flex-col gap-1 px-6 py-4">
+      {
+        navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="mobile-link block rounded-md px-3 py-2 text-sm text-text-secondary transition-colors duration-200 hover:bg-glow-bg hover:text-accent"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById("mobile-menu-btn");
+  const menu = document.getElementById("mobile-menu");
+  btn?.addEventListener("click", () => menu?.classList.toggle("hidden"));
+  document.querySelectorAll(".mobile-link").forEach((link) => {
+    link.addEventListener("click", () => menu?.classList.add("hidden"));
+  });
+</script>
+
+<style>
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--color-accent);
+    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .nav-link:hover::after {
+    width: 100%;
+  }
+</style>
