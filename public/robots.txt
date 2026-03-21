@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://danielssf.dev/sitemap-index.xml
