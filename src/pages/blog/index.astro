@@ -16,7 +16,7 @@ const posts = (await getCollection("blog"))
       <h2 class="mb-2 text-sm font-semibold uppercase tracking-widest text-accent">
         Blog
       </h2>
-      <h1 class="mb-12 text-3xl font-bold tracking-tight text-text-heading sm:text-4xl">
+      <h1 class="mb-12 text-3xl font-bold tracking-tight text-title-section sm:text-4xl">
         Artículos y reflexiones
       </h1>
 
@@ -27,7 +27,7 @@ const posts = (await getCollection("blog"))
             class="card-interactive group block rounded-xl border border-border border-l-2 border-l-transparent bg-surface-elevated p-6 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-glow-border hover:border-l-accent hover:bg-glow-bg hover:shadow-[0_0_25px_var(--color-glow-shadow)] active:scale-[0.98] motion-reduce:transition-none motion-reduce:hover:transform-none"
           >
             <div class="mb-3 flex flex-wrap items-center gap-3">
-              <time class="text-xs text-text-muted font-mono">
+              <time class="text-xs text-text-accent-soft font-mono">
                 {post.data.date.toLocaleDateString("es-ES", {
                   year: "numeric",
                   month: "long",
@@ -42,7 +42,7 @@ const posts = (await getCollection("blog"))
                 ))}
               </div>
             </div>
-            <h3 class="mb-2 text-lg font-semibold text-text-heading transition-colors duration-200 group-hover:text-accent">
+            <h3 class="mb-2 text-lg font-semibold text-title-card transition-colors duration-200 group-hover:text-accent">
               {post.data.title}
             </h3>
             <p class="text-sm leading-relaxed text-text-primary">

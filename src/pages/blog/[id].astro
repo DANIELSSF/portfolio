@@ -23,7 +23,7 @@ const { Content } = await render(post);
     <div class="mx-auto max-w-3xl">
       <a
         href="/blog"
-        class="mb-8 inline-flex items-center gap-1 text-sm text-text-muted transition-colors duration-200 hover:text-text-heading"
+        class="mb-8 inline-flex items-center gap-1 text-sm text-accent/60 transition-colors duration-200 hover:text-accent"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="m12 19-7-7 7-7" />
@@ -34,7 +34,7 @@ const { Content } = await render(post);
 
       <header class="mb-10">
         <div class="mb-4 flex flex-wrap items-center gap-3">
-          <time class="text-sm text-text-muted font-mono">
+          <time class="text-sm text-text-accent-soft font-mono">
             {post.data.date.toLocaleDateString("es-ES", {
               year: "numeric",
               month: "long",
@@ -49,7 +49,7 @@ const { Content } = await render(post);
             ))}
           </div>
         </div>
-        <h1 class="text-3xl font-bold tracking-tight text-text-heading sm:text-4xl">
+        <h1 class="text-3xl font-bold tracking-tight text-title-section sm:text-4xl">
           {post.data.title}
         </h1>
       </header>
