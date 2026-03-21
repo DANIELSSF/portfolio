@@ -70,13 +70,13 @@ export default function TerminalHero() {
             <div className="w-3 h-3 rounded-full bg-[#febc2e]" />
             <div className="w-3 h-3 rounded-full bg-[#28c840]" />
           </div>
-          <span className="ml-2 text-xs text-text-muted font-mono">
+          <span className="ml-2 text-xs text-text-accent-soft font-mono">
             daniel@portfolio — zsh
           </span>
         </div>
 
         {/* Terminal content */}
-        <div className="p-4 font-mono text-sm leading-relaxed min-h-[260px]">
+        <div className="p-4 font-mono text-sm leading-relaxed min-h-[260px] bg-[#1a1b26] text-slate-300">
           <AnimatePresence>
             {lines.slice(0, visibleLines).map((line, i) => (
               <motion.div
@@ -87,50 +87,48 @@ export default function TerminalHero() {
                 className="mb-2"
               >
                 <div className="flex gap-2">
-                  <span className="text-accent">❯</span>
-                  <span className="text-text-primary">{line.command}</span>
+                  <span className="text-emerald-400">❯</span>
+                  <span className="text-slate-300">{line.command}</span>
                 </div>
-                <div className="pl-5 text-emerald-500/70 dark:text-emerald-500/70">{line.output}</div>
+                <div className="pl-5 text-emerald-400/80">{line.output}</div>
               </motion.div>
             ))}
           </AnimatePresence>
 
-          {/* Currently typing line */}
-          {visibleLines < lines.length && (
-            <div className="mb-2">
-              <div className="flex gap-2">
-                <span className="text-accent">❯</span>
-                <span className="text-text-primary">
-                  {currentText}
-                  <span
-                    className={`inline-block w-[8px] h-[14px] ml-[1px] -mb-[2px] bg-text-secondary ${
-                      cursorVisible ? "opacity-100" : "opacity-0"
-                    }`}
-                  />
-                </span>
-              </div>
-              {showOutput && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="pl-5 text-emerald-500/70 dark:text-emerald-500/70"
-                >
-                  {lines[visibleLines].output}
-                </motion.div>
-              )}
-            </div>
-          )}
+        {/* Currently typing line */}
+        {visibleLines < lines.length && (
+          <div className="mb-2 flex items-center gap-2">
+            <span className="text-emerald-400">❯</span>
+            <span className="text-slate-300 flex items-center">
+              {currentText}
+              <span
+                className={`inline-block w-[10px] h-[16px] ml-1 bg-slate-300 ${
+                  cursorVisible ? "opacity-100" : "opacity-0"
+                }`}
+              />
+            </span>
+          </div>
+        )}
+        {visibleLines < lines.length && showOutput && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="pl-5 text-emerald-400/80 mb-2"
+          >
+            {lines[visibleLines].output}
+          </motion.div>
+        )}
 
           {/* Final cursor */}
           {visibleLines >= lines.length && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="flex gap-2"
+              className="flex items-center gap-2"
             >
-              <span className="text-accent">❯</span>
+              <span className="text-emerald-400">❯</span>
               <span
-                className={`inline-block w-[8px] h-[14px] ml-[1px] -mb-[2px] bg-text-secondary ${
+                className={`inline-block w-[10px] h-[16px] ml-1 bg-slate-300 ${
                   cursorVisible ? "opacity-100" : "opacity-0"
                 }`}
               />
