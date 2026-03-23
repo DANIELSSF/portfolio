@@ -40,7 +40,7 @@ export const translations = {
 
     // About
     'about.subtitle': 'Sobre mí',
-    'about.title': '01. Acerca de',
+    'about.title': 'Acerca de',
     'about.p1':
       'Soy ingeniero backend enfocado en <strong class="text-text-heading">sistemas escalables</strong>. Mi especialidad está en traducir requerimientos de negocio complejos en arquitecturas robustas del lado del servidor.',
     'about.p2':
@@ -48,13 +48,17 @@ export const translations = {
     'about.p3':
       'Más allá del desarrollo backend estándar, integro activamente <strong class="text-text-heading">modelos de IA (LLMs)</strong> y construyo flujos de trabajo automatizados para resolver problemas del mundo real de forma eficiente.',
     'about.cap1.title': 'Arquitectura de APIs',
-    'about.cap1.desc': 'APIs RESTful y GraphQL con enfoque en rendimiento, seguridad y experiencia de desarrollador.',
+    'about.cap1.desc':
+      'APIs RESTful y GraphQL con enfoque en rendimiento, seguridad y experiencia de desarrollador.',
     'about.cap2.title': 'Diseño de Bases de Datos',
-    'about.cap2.desc': 'Diseño de esquemas, optimización de consultas y modelado de datos para PostgreSQL, MongoDB, MySQL.',
+    'about.cap2.desc':
+      'Diseño de esquemas, optimización de consultas y modelado de datos para PostgreSQL, MongoDB, MySQL.',
     'about.cap3.title': 'Infraestructura Cloud',
-    'about.cap3.desc': 'Despliegue en AWS y GCP con Kubernetes, Docker e infraestructura como código.',
+    'about.cap3.desc':
+      'Despliegue en AWS y GCP con Kubernetes, Docker e infraestructura como código.',
     'about.cap4.title': 'Sistemas Distribuidos',
-    'about.cap4.desc': 'Colas de mensajes, arquitectura orientada a eventos y patrones de microservicios.',
+    'about.cap4.desc':
+      'Colas de mensajes, arquitectura orientada a eventos y patrones de microservicios.',
     'about.stat1': 'Años de experiencia',
     'about.stat2': 'Proyectos completados',
     'about.stat3': 'Tecnologías dominadas',
@@ -124,8 +128,9 @@ export const translations = {
     // Contact
     'contact.subtitle': 'Contacto',
     'contact.title': 'Trabajemos juntos',
+    'contact.available': 'Disponible para trabajo remoto',
     'contact.description':
-      'Full Stack Engineer con sede en Sogamoso, Colombia. Disponible para oportunidades remotas. Comprometido con buenas prácticas de ingeniería, principios SOLID, CI/CD y entrega continua de valor al negocio.',
+      'Full Stack Engineer con sede en Sogamoso, Colombia. Comprometido con buenas prácticas de ingeniería, principios SOLID, CI/CD y entrega continua de valor al negocio.',
 
     // Metrics
     'metrics.title': 'Impacto',
@@ -173,21 +178,25 @@ export const translations = {
 
     // About
     'about.subtitle': 'About me',
-    'about.title': '01. About',
+    'about.title': 'About',
     'about.p1':
-      "I'm a backend engineer focused on <strong class=\"text-text-heading\">scalable systems</strong>. My expertise lies in translating complex business requirements into robust, server-side architectures.",
+      'I\'m a backend engineer focused on <strong class="text-text-heading">scalable systems</strong>. My expertise lies in translating complex business requirements into robust, server-side architectures.',
     'about.p2':
       'I specialize in <strong class="text-text-heading">high-throughput APIs</strong>, <strong class="text-text-heading">event-driven microservices</strong>, and database optimization, building resilient backends for applications with massive user bases.',
     'about.p3':
       'Beyond standard backend development, I actively integrate <strong class="text-text-heading">AI models (LLMs)</strong> and build automated workflows to solve real-world problems efficiently.',
     'about.cap1.title': 'API Architecture',
-    'about.cap1.desc': 'RESTful & GraphQL APIs with focus on performance, security, and developer experience.',
+    'about.cap1.desc':
+      'RESTful & GraphQL APIs with focus on performance, security, and developer experience.',
     'about.cap2.title': 'Database Design',
-    'about.cap2.desc': 'Schema design, query optimization, and data modeling for PostgreSQL, MongoDB, MySQL.',
+    'about.cap2.desc':
+      'Schema design, query optimization, and data modeling for PostgreSQL, MongoDB, MySQL.',
     'about.cap3.title': 'Cloud Infrastructure',
-    'about.cap3.desc': 'AWS, GCP deployment with Kubernetes, Docker, and infrastructure as code.',
+    'about.cap3.desc':
+      'AWS, GCP deployment with Kubernetes, Docker, and infrastructure as code.',
     'about.cap4.title': 'Distributed Systems',
-    'about.cap4.desc': 'Message queues, event-driven architecture, and microservices patterns.',
+    'about.cap4.desc':
+      'Message queues, event-driven architecture, and microservices patterns.',
     'about.stat1': 'Years of experience',
     'about.stat2': 'Projects completed',
     'about.stat3': 'Technologies mastered',
@@ -258,8 +267,9 @@ export const translations = {
     // Contact
     'contact.subtitle': 'Contact',
     'contact.title': "Let's work together",
+    'contact.available': 'Available for remote work',
     'contact.description':
-      'Full Stack Engineer based in Sogamoso, Colombia. Available for remote opportunities. Committed to engineering best practices, SOLID principles, CI/CD and continuous value delivery.',
+      'Full Stack Engineer based in Sogamoso, Colombia. Committed to engineering best practices, SOLID principles, CI/CD and continuous value delivery.',
 
     // Metrics
     'metrics.title': 'Impact',
