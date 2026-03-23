@@ -14,13 +14,6 @@ export default function FluidNav({ links }: Props) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    // Blog page: activate the blog link directly
-    if (window.location.pathname.startsWith("/blog")) {
-      const idx = links.findIndex((l) => l.href.includes("/blog"));
-      if (idx !== -1) setActiveIndex(idx);
-      return;
-    }
-
     // Map section IDs → link indices for scroll tracking
     const sectionMap = new Map<string, number>();
     links.forEach((l, i) => {
