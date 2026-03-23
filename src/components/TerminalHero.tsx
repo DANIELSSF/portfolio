@@ -2,8 +2,10 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface TerminalLine {
-  type: "command" | "output" | "prompt";
+  type: "command" | "output" | "help-row";
   text: string;
+  helpCmd?: string;
+  helpDesc?: string;
 }
 
 const SCRIPT_LINES = [
@@ -14,13 +16,13 @@ const SCRIPT_LINES = [
   { command: "cat passion.md", output: "AI integration · Chatbots · LLM · Automation" },
 ];
 
-const HELP_TEXT = [
-  "Available commands:",
-  "  ls           List portfolio sections",
-  "  cd <section> Navigate to a section",
-  "  cat about.md Show a brief summary",
-  "  help         Show this help message",
-  "  clear        Clear terminal output",
+const HELP_ROWS: { cmd: string; desc: string }[] = [
+  { cmd: "ls", desc: "List available portfolio sections" },
+  { cmd: "cd <section>", desc: "Navigate to a section (e.g., cd about)" },
+  { cmd: "cat about.md", desc: "Show a brief summary" },
+  { cmd: "clear", desc: "Clear terminal output" },
+  { cmd: "init", desc: "Replay the welcome animation" },
+  { cmd: "help", desc: "Show this message" },
 ];
 
 const SECTIONS = ["about", "experience", "projects", "skills", "education", "contact"];
@@ -48,7 +50,7 @@ interface Props {
   downloadLabel?: string;
 }
 
-export default function TerminalHero({ lang, ctaLabel, downloadLabel }: Props) {
+export default function TerminalHero({ ctaLabel, downloadLabel }: Props) {
   const [history, setHistory] = useState<TerminalLine[]>([]);
   const [currentTyping, setCurrentTyping] = useState("");
   const [showTypingOutput, setShowTypingOutput] = useState(false);
@@ -58,6 +60,7 @@ export default function TerminalHero({ lang, ctaLabel, downloadLabel }: Props) {
   const [inputValue, setInputValue] = useState("");
   const [cursorVisible, setCursorVisible] = useState(true);
   const [showButtons, setShowButtons] = useState(false);
+  const [animationKey, setAnimationKey] = useState(0);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const terminalRef = useRef<HTMLDivElement>(null);
@@ -116,12 +119,24 @@ export default function TerminalHero({ lang, ctaLabel, downloadLabel }: Props) {
     }, 42);
 
     return () => clearInterval(typeInterval);
-  }, [scriptIndex]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scriptIndex, animationKey]);
 
   // Focus input when animation completes
   useEffect(() => {
     if (animationDone) inputRef.current?.focus();
   }, [animationDone]);
+
+  const replayAnimation = () => {
+    setHistory([]);
+    setCurrentTyping("");
+    setShowTypingOutput(false);
+    setTypingOutputText("");
+    setScriptIndex(0);
+    setAnimationDone(false);
+    setInputValue("");
+    setAnimationKey((k) => k + 1);
+  };
 
   const executeCommand = (cmd: string) => {
     const trimmed = cmd.trim().toLowerCase();
@@ -133,8 +148,21 @@ export default function TerminalHero({ lang, ctaLabel, downloadLabel }: Props) {
       return;
     }
 
+    if (trimmed === "init") {
+      replayAnimation();
+      return;
+    }
+
     if (trimmed === "help") {
-      HELP_TEXT.forEach((l) => newLines.push({ type: "output", text: l }));
+      newLines.push({ type: "output", text: "Available commands:" });
+      HELP_ROWS.forEach((r) =>
+        newLines.push({
+          type: "help-row",
+          text: "",
+          helpCmd: r.cmd,
+          helpDesc: r.desc,
+        })
+      );
     } else if (trimmed === "ls") {
       newLines.push({ type: "output", text: SECTIONS.join("  ") });
     } else if (trimmed.startsWith("cd ")) {
@@ -153,7 +181,7 @@ export default function TerminalHero({ lang, ctaLabel, downloadLabel }: Props) {
     } else if (trimmed === "cat about.md") {
       ABOUT_TEXT.forEach((l) => newLines.push({ type: "output", text: l }));
     } else if (trimmed === "") {
-      // empty command — just show prompt
+      // empty command
     } else {
       newLines.push({ type: "output", text: `command not found: ${trimmed}` });
       newLines.push({ type: "output", text: 'Type "help" for available commands.' });
@@ -178,10 +206,34 @@ export default function TerminalHero({ lang, ctaLabel, downloadLabel }: Props) {
     />
   );
 
+  const renderLine = (line: TerminalLine, i: number) => {
+    if (line.type === "command") {
+      return (
+        <div className="flex gap-2">
+          <span className="terminal-prompt shrink-0">❯</span>
+          <span className="terminal-cmd">{line.text}</span>
+        </div>
+      );
+    }
+    if (line.type === "help-row") {
+      return (
+        <div className="pl-3 flex" style={{ fontFamily: "var(--font-mono)" }}>
+          <span className="terminal-help-cmd shrink-0" style={{ width: "14ch", display: "inline-block" }}>
+            {line.helpCmd}
+          </span>
+          <span className="terminal-output" style={{ opacity: 0.5, marginRight: "0.5rem" }}>-</span>
+          <span className="terminal-output">{line.helpDesc}</span>
+        </div>
+      );
+    }
+    return <div className="terminal-output pl-5">{line.text}</div>;
+  };
+
   return (
     <div className="w-full max-w-2xl mx-auto">
       {/* Terminal window */}
-      <div className="terminal-window rounded-xl border overflow-hidden shadow-2xl"
+      <div
+        className="terminal-window rounded-xl border overflow-hidden shadow-2xl"
         style={{
           borderColor: "var(--color-border)",
           background: "var(--color-surface-elevated)",
@@ -216,19 +268,12 @@ export default function TerminalHero({ lang, ctaLabel, downloadLabel }: Props) {
           <AnimatePresence>
             {history.map((line, i) => (
               <motion.div
-                key={`h-${i}`}
+                key={`h-${animationKey}-${i}`}
                 initial={{ opacity: 0, y: 3 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.15 }}
               >
-                {line.type === "command" ? (
-                  <div className="flex gap-2">
-                    <span className="terminal-prompt shrink-0">❯</span>
-                    <span className="terminal-cmd">{line.text}</span>
-                  </div>
-                ) : (
-                  <div className="terminal-output pl-5">{line.text}</div>
-                )}
+                {renderLine(line, i)}
               </motion.div>
             ))}
           </AnimatePresence>
