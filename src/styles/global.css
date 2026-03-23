@@ -406,6 +406,11 @@ html {
   color: var(--color-terminal-prompt-full);
 }
 
+.terminal-help-cmd {
+  color: var(--color-terminal-prompt);
+  font-weight: 600;
+}
+
 /* ============================================
    Unified Tags — single accent color everywhere
    ============================================ */
