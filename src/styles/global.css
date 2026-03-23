@@ -367,8 +367,10 @@ html {
    Terminal Hero — themed colors
    ============================================ */
 
-:root {
-  --color-terminal-bg: #1a1b26;
+/* Terminal body: ALWAYS dark regardless of theme */
+:root,
+:root.light {
+  --color-terminal-bg: #0f111a;
   --color-terminal-cmd: #c0caf5;
   --color-terminal-prompt: #7dd3fc;
   --color-terminal-output: rgba(125, 211, 252, 0.75);
@@ -376,13 +378,19 @@ html {
   --color-terminal-prompt-full: #52525b;
 }
 
+/* Terminal window frame: adapts to theme */
+:root {
+  --color-terminal-frame-bg: rgba(24, 24, 27, 0.6);
+  --color-terminal-frame-border: rgba(255, 255, 255, 0.06);
+  --color-terminal-frame-text: #52525b;
+  --color-terminal-window-bg: #0f111a;
+}
+
 :root.light {
-  --color-terminal-bg: #fafafa;
-  --color-terminal-cmd: #27272a;
-  --color-terminal-prompt: #0c4a6e;
-  --color-terminal-output: #0c4a6e;
-  --color-terminal-cursor: #27272a;
-  --color-terminal-prompt-full: #a1a1aa;
+  --color-terminal-frame-bg: #e4e4e7;
+  --color-terminal-frame-border: #c4c4cc;
+  --color-terminal-frame-text: #52525b;
+  --color-terminal-window-bg: #0f111a;
 }
 
 .terminal-body {
@@ -409,6 +417,17 @@ html {
 .terminal-help-cmd {
   color: var(--color-terminal-prompt);
   font-weight: 600;
+}
+
+.terminal-window {
+  background: var(--color-terminal-window-bg);
+  border-color: var(--color-terminal-frame-border);
+}
+
+.terminal-frame {
+  background: var(--color-terminal-frame-bg);
+  border-color: var(--color-terminal-frame-border);
+  color: var(--color-terminal-frame-text);
 }
 
 /* ============================================
