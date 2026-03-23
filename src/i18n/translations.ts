@@ -15,8 +15,8 @@ export const translations = {
     'nav.experience': 'Experiencia',
     'nav.projects': 'Proyectos',
     'nav.skills': 'Skills',
+    'nav.education': 'Educación',
     'nav.contact': 'Contacto',
-    'nav.blog': 'Blog',
 
     // Hero
     'hero.available': 'Disponible para trabajo remoto',
@@ -141,10 +141,6 @@ export const translations = {
     '404.description': 'La página que buscas no existe o fue movida.',
     '404.cta': 'Volver al inicio',
 
-    // Blog
-    'blog.subtitle': 'Blog',
-    'blog.title': 'Artículos y reflexiones',
-    'blog.read': 'Leer artículo',
   },
   en: {
     // Nav
@@ -153,8 +149,8 @@ export const translations = {
     'nav.experience': 'Experience',
     'nav.projects': 'Projects',
     'nav.skills': 'Skills',
+    'nav.education': 'Education',
     'nav.contact': 'Contact',
-    'nav.blog': 'Blog',
 
     // Hero
     'hero.available': 'Available for remote work',
@@ -281,10 +277,6 @@ export const translations = {
       "The page you're looking for doesn't exist or has been moved.",
     '404.cta': 'Back to home',
 
-    // Blog
-    'blog.subtitle': 'Blog',
-    'blog.title': 'Articles & thoughts',
-    'blog.read': 'Read article',
   },
 } as const;
 
