@@ -42,11 +42,11 @@ export const translations = {
     'about.subtitle': 'Sobre mí',
     'about.title': '01. Acerca de',
     'about.p1':
-      'Soy ingeniero backend apasionado por construir sistemas que escalen. Mi trayectoria comenzó con un enfoque en principios fundamentales de ingeniería, evolucionando hacia una carrera dedicada a crear <strong class="text-text-heading">arquitecturas robustas del lado del servidor</strong>.',
+      'Soy ingeniero backend enfocado en <strong class="text-text-heading">sistemas escalables</strong>. Mi especialidad está en traducir requerimientos de negocio complejos en arquitecturas robustas del lado del servidor.',
     'about.p2':
-      'Me especializo en diseñar <strong class="text-text-heading">APIs de alto rendimiento</strong>, implementar <strong class="text-text-heading">arquitecturas orientadas a eventos</strong> y optimizar el <strong class="text-text-heading">rendimiento de bases de datos</strong> para aplicaciones que sirven a miles de usuarios.',
+      'Me especializo en <strong class="text-text-heading">APIs de alto rendimiento</strong>, <strong class="text-text-heading">microservicios event-driven</strong> y optimización de bases de datos, construyendo backends resilientes para aplicaciones con bases masivas de usuarios.',
     'about.p3':
-      'Cuando no estoy escribiendo código, exploro patrones de diseño de sistemas, contribuyo a proyectos open-source, o investigo sobre computación distribuida e <strong class="text-text-heading">integración de IA</strong> en productos reales.',
+      'Más allá del desarrollo backend estándar, integro activamente <strong class="text-text-heading">modelos de IA (LLMs)</strong> y construyo flujos de trabajo automatizados para resolver problemas del mundo real de forma eficiente.',
     'about.cap1.title': 'Arquitectura de APIs',
     'about.cap1.desc': 'APIs RESTful y GraphQL con enfoque en rendimiento, seguridad y experiencia de desarrollador.',
     'about.cap2.title': 'Diseño de Bases de Datos',
@@ -175,11 +175,11 @@ export const translations = {
     'about.subtitle': 'About me',
     'about.title': '01. About',
     'about.p1':
-      "I'm a backend engineer passionate about building systems that scale. My journey started with a focus on core engineering principles, evolving into a career dedicated to crafting <strong class=\"text-text-heading\">robust server-side architectures</strong>.",
+      "I'm a backend engineer focused on <strong class=\"text-text-heading\">scalable systems</strong>. My expertise lies in translating complex business requirements into robust, server-side architectures.",
     'about.p2':
-      'I specialize in designing <strong class="text-text-heading">high-throughput APIs</strong>, implementing <strong class="text-text-heading">event-driven architectures</strong>, and optimizing <strong class="text-text-heading">database performance</strong> for applications serving thousands of users.',
+      'I specialize in <strong class="text-text-heading">high-throughput APIs</strong>, <strong class="text-text-heading">event-driven microservices</strong>, and database optimization, building resilient backends for applications with massive user bases.',
     'about.p3':
-      "When I'm not writing code, you'll find me exploring system design patterns, contributing to open-source projects, or diving deep into distributed computing and <strong class=\"text-text-heading\">AI integration</strong> in real products.",
+      'Beyond standard backend development, I actively integrate <strong class="text-text-heading">AI models (LLMs)</strong> and build automated workflows to solve real-world problems efficiently.',
     'about.cap1.title': 'API Architecture',
     'about.cap1.desc': 'RESTful & GraphQL APIs with focus on performance, security, and developer experience.',
     'about.cap2.title': 'Database Design',
