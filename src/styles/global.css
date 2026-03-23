@@ -363,6 +363,70 @@ html {
   from { opacity: 0; }
 }
 
+/* ============================================
+   Terminal Hero — themed colors
+   ============================================ */
+
+:root {
+  --color-terminal-bg: #1a1b26;
+  --color-terminal-cmd: #c0caf5;
+  --color-terminal-prompt: #7dd3fc;
+  --color-terminal-output: rgba(125, 211, 252, 0.75);
+  --color-terminal-cursor: #c0caf5;
+  --color-terminal-prompt-full: #52525b;
+}
+
+:root.light {
+  --color-terminal-bg: #fafafa;
+  --color-terminal-cmd: #27272a;
+  --color-terminal-prompt: #0c4a6e;
+  --color-terminal-output: #0c4a6e;
+  --color-terminal-cursor: #27272a;
+  --color-terminal-prompt-full: #a1a1aa;
+}
+
+.terminal-body {
+  background: var(--color-terminal-bg);
+  color: var(--color-terminal-cmd);
+}
+
+.terminal-prompt {
+  color: var(--color-terminal-prompt);
+}
+
+.terminal-cmd {
+  color: var(--color-terminal-cmd);
+}
+
+.terminal-output {
+  color: var(--color-terminal-output);
+}
+
+.terminal-prompt-full {
+  color: var(--color-terminal-prompt-full);
+}
+
+/* ============================================
+   Unified Tags — single accent color everywhere
+   ============================================ */
+
+.unified-tag {
+  display: inline-block;
+  border-radius: 9999px;
+  border: 1px solid var(--color-tag-border);
+  background: var(--color-tag-bg);
+  color: var(--color-tag-text);
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  transition: background-color 200ms, border-color 200ms;
+}
+
+.unified-tag:hover {
+  border-color: var(--color-glow-border);
+  background: var(--color-glow-bg);
+}
+
 /* Reduced motion: respect user preference */
 @media (prefers-reduced-motion: reduce) {
   *,

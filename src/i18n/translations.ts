@@ -11,6 +11,7 @@ export const translations = {
   es: {
     // Nav
     'nav.home': 'Inicio',
+    'nav.about': 'Sobre mí',
     'nav.experience': 'Experiencia',
     'nav.projects': 'Proyectos',
     'nav.skills': 'Skills',
@@ -36,6 +37,28 @@ export const translations = {
     'terminal.out4': 'GCP · AWS · Docker',
     'terminal.cmd5': 'cat passion.md',
     'terminal.out5': 'AI integration · Chatbots · LLM · Automation',
+
+    // About
+    'about.subtitle': 'Sobre mí',
+    'about.title': '01. Acerca de',
+    'about.p1':
+      'Soy ingeniero backend apasionado por construir sistemas que escalen. Mi trayectoria comenzó con un enfoque en principios fundamentales de ingeniería, evolucionando hacia una carrera dedicada a crear <strong class="text-text-heading">arquitecturas robustas del lado del servidor</strong>.',
+    'about.p2':
+      'Me especializo en diseñar <strong class="text-text-heading">APIs de alto rendimiento</strong>, implementar <strong class="text-text-heading">arquitecturas orientadas a eventos</strong> y optimizar el <strong class="text-text-heading">rendimiento de bases de datos</strong> para aplicaciones que sirven a miles de usuarios.',
+    'about.p3':
+      'Cuando no estoy escribiendo código, exploro patrones de diseño de sistemas, contribuyo a proyectos open-source, o investigo sobre computación distribuida e <strong class="text-text-heading">integración de IA</strong> en productos reales.',
+    'about.cap1.title': 'Arquitectura de APIs',
+    'about.cap1.desc': 'APIs RESTful y GraphQL con enfoque en rendimiento, seguridad y experiencia de desarrollador.',
+    'about.cap2.title': 'Diseño de Bases de Datos',
+    'about.cap2.desc': 'Diseño de esquemas, optimización de consultas y modelado de datos para PostgreSQL, MongoDB, MySQL.',
+    'about.cap3.title': 'Infraestructura Cloud',
+    'about.cap3.desc': 'Despliegue en AWS y GCP con Kubernetes, Docker e infraestructura como código.',
+    'about.cap4.title': 'Sistemas Distribuidos',
+    'about.cap4.desc': 'Colas de mensajes, arquitectura orientada a eventos y patrones de microservicios.',
+    'about.stat1': 'Años de experiencia',
+    'about.stat2': 'Proyectos completados',
+    'about.stat3': 'Tecnologías dominadas',
+    'about.stat4': 'Clientes satisfechos',
 
     // Experience
     'experience.subtitle': 'Trayectoria',
@@ -121,6 +144,7 @@ export const translations = {
   en: {
     // Nav
     'nav.home': 'Home',
+    'nav.about': 'About',
     'nav.experience': 'Experience',
     'nav.projects': 'Projects',
     'nav.skills': 'Skills',
@@ -146,6 +170,28 @@ export const translations = {
     'terminal.out4': 'GCP · AWS · Docker',
     'terminal.cmd5': 'cat passion.md',
     'terminal.out5': 'AI integration · Chatbots · LLM · Automation',
+
+    // About
+    'about.subtitle': 'About me',
+    'about.title': '01. About',
+    'about.p1':
+      "I'm a backend engineer passionate about building systems that scale. My journey started with a focus on core engineering principles, evolving into a career dedicated to crafting <strong class=\"text-text-heading\">robust server-side architectures</strong>.",
+    'about.p2':
+      'I specialize in designing <strong class="text-text-heading">high-throughput APIs</strong>, implementing <strong class="text-text-heading">event-driven architectures</strong>, and optimizing <strong class="text-text-heading">database performance</strong> for applications serving thousands of users.',
+    'about.p3':
+      "When I'm not writing code, you'll find me exploring system design patterns, contributing to open-source projects, or diving deep into distributed computing and <strong class=\"text-text-heading\">AI integration</strong> in real products.",
+    'about.cap1.title': 'API Architecture',
+    'about.cap1.desc': 'RESTful & GraphQL APIs with focus on performance, security, and developer experience.',
+    'about.cap2.title': 'Database Design',
+    'about.cap2.desc': 'Schema design, query optimization, and data modeling for PostgreSQL, MongoDB, MySQL.',
+    'about.cap3.title': 'Cloud Infrastructure',
+    'about.cap3.desc': 'AWS, GCP deployment with Kubernetes, Docker, and infrastructure as code.',
+    'about.cap4.title': 'Distributed Systems',
+    'about.cap4.desc': 'Message queues, event-driven architecture, and microservices patterns.',
+    'about.stat1': 'Years of experience',
+    'about.stat2': 'Projects completed',
+    'about.stat3': 'Technologies mastered',
+    'about.stat4': 'Satisfied clients',
 
     // Experience
     'experience.subtitle': 'Career',

@@ -3,12 +3,65 @@ import { getLangFromUrl, t } from "@/i18n/translations";
 const lang = getLangFromUrl(Astro.url);
 
 const skillCategories = [
-  { title: t(lang, "skills.languages"), items: ["JavaScript", "TypeScript", "Go", "SQL", "NoSQL"] },
-  { title: t(lang, "skills.backend"), items: ["Node.js", "NestJS", "Express.js", "REST APIs", "Microservicios", "SOLID", "Clean Code", "Swagger"] },
-  { title: t(lang, "skills.frontend"), items: ["React.js", "Next.js", "Astro.js", "Tailwind CSS"] },
-  { title: t(lang, "skills.databases"), items: ["MongoDB", "PostgreSQL", "MySQL", "OracleSQL"] },
-  { title: t(lang, "skills.cloud"), items: ["GCP (Cloud Run, GCS)", "AWS (S3, EC2, RDS)", "Docker", "Git / GitHub"] },
-  { title: t(lang, "skills.integrations"), items: ["OpenAI API", "Meta API (WhatsApp)", "Google Calendar API", "PayPal"] },
+  {
+    title: t(lang, "skills.languages"),
+    items: [
+      { name: "JavaScript", icon: "js" },
+      { name: "TypeScript", icon: "ts" },
+      { name: "Go", icon: "go" },
+      { name: "SQL", icon: "sql" },
+      { name: "NoSQL", icon: "nosql" },
+    ],
+  },
+  {
+    title: t(lang, "skills.backend"),
+    items: [
+      { name: "Node.js", icon: "node" },
+      { name: "NestJS", icon: "nest" },
+      { name: "Express.js", icon: "express" },
+      { name: "REST APIs", icon: "api" },
+      { name: "Microservicios", icon: "micro" },
+      { name: "SOLID", icon: "solid" },
+      { name: "Clean Code", icon: "clean" },
+      { name: "Swagger", icon: "swagger" },
+    ],
+  },
+  {
+    title: t(lang, "skills.frontend"),
+    items: [
+      { name: "React.js", icon: "react" },
+      { name: "Next.js", icon: "next" },
+      { name: "Astro.js", icon: "astro" },
+      { name: "Tailwind CSS", icon: "tailwind" },
+    ],
+  },
+  {
+    title: t(lang, "skills.databases"),
+    items: [
+      { name: "MongoDB", icon: "mongo" },
+      { name: "PostgreSQL", icon: "postgres" },
+      { name: "MySQL", icon: "mysql" },
+      { name: "OracleSQL", icon: "oracle" },
+    ],
+  },
+  {
+    title: t(lang, "skills.cloud"),
+    items: [
+      { name: "GCP", icon: "gcp" },
+      { name: "AWS", icon: "aws" },
+      { name: "Docker", icon: "docker" },
+      { name: "Git / GitHub", icon: "git" },
+    ],
+  },
+  {
+    title: t(lang, "skills.integrations"),
+    items: [
+      { name: "OpenAI API", icon: "openai" },
+      { name: "Meta API", icon: "meta" },
+      { name: "Google Calendar", icon: "gcal" },
+      { name: "PayPal", icon: "paypal" },
+    ],
+  },
 ];
 ---
 
@@ -17,13 +70,21 @@ const skillCategories = [
     <h2 class="mb-2 text-sm font-semibold uppercase tracking-widest text-accent">{t(lang, "skills.subtitle")}</h2>
     <h3 class="mb-12 text-3xl font-bold tracking-tight text-title-section sm:text-4xl">{t(lang, "skills.title")}</h3>
 
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="space-y-10">
       {skillCategories.map((category) => (
-        <div class="section-card card-interactive rounded-xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900/40 p-6 shadow-sm dark:shadow-none transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:shadow-md hover:border-zinc-300 dark:hover:border-white/20 dark:hover:shadow-[0_0_25px_rgba(30,58,138,0.2)] active:scale-[0.98] motion-reduce:transition-none motion-reduce:hover:transform-none">
-          <h4 class="mb-5 text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">{category.title}</h4>
-          <div class="flex flex-wrap gap-2">
+        <div>
+          <h4 class="mb-4 text-xs font-bold uppercase tracking-widest text-text-secondary">{category.title}</h4>
+          <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
             {category.items.map((item) => (
-              <span class="rounded-md border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-zinc-800/50 px-3 py-1.5 text-sm text-zinc-700 dark:text-zinc-300 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-sm hover:border-zinc-400 dark:hover:border-zinc-500 hover:bg-white dark:hover:bg-zinc-700/50">{item}</span>
+              <div class="skill-card group relative flex flex-col items-center gap-3 rounded-xl border border-zinc-200 dark:border-white/[0.06] bg-white dark:bg-zinc-900/30 p-4 text-center transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-zinc-300 dark:hover:border-white/15 motion-reduce:hover:transform-none">
+                <div class="skill-icon-wrap flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-surface-elevated transition-all duration-300 group-hover:border-glow-border group-hover:bg-glow-bg group-hover:shadow-[0_0_16px_var(--color-glow-shadow)]">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-text-secondary transition-colors duration-300 group-hover:text-accent">
+                    <polyline points="16 18 22 12 16 6" />
+                    <polyline points="8 6 2 12 8 18" />
+                  </svg>
+                </div>
+                <span class="text-xs font-medium text-text-primary transition-colors duration-300 group-hover:text-text-heading">{item.name}</span>
+              </div>
             ))}
           </div>
         </div>
@@ -31,3 +92,24 @@ const skillCategories = [
     </div>
   </div>
 </section>
+
+<style>
+  .skill-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 0.75rem;
+    opacity: 0;
+    background: radial-gradient(
+      circle at 50% 50%,
+      var(--color-glow-bg) 0%,
+      transparent 70%
+    );
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .skill-card:hover::before {
+    opacity: 1;
+  }
+</style>
