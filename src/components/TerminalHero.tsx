@@ -232,27 +232,15 @@ export default function TerminalHero({ ctaLabel, downloadLabel }: Props) {
   return (
     <div className="w-full max-w-2xl mx-auto">
       {/* Terminal window */}
-      <div
-        className="terminal-window rounded-xl border overflow-hidden shadow-2xl"
-        style={{
-          borderColor: "var(--color-border)",
-          background: "var(--color-surface-elevated)",
-        }}
-      >
-        {/* macOS title bar */}
-        <div
-          className="flex items-center gap-2 px-4 py-3 border-b select-none"
-          style={{ borderColor: "var(--color-border)", background: "var(--color-surface-tag)" }}
-        >
+      <div className="terminal-window rounded-xl border overflow-hidden shadow-2xl">
+        {/* macOS title bar — adapts to theme */}
+        <div className="terminal-frame flex items-center gap-2 px-4 py-3 border-b select-none">
           <div className="flex gap-1.5">
             <div className="w-3 h-3 rounded-full bg-[#ff5f57]" />
             <div className="w-3 h-3 rounded-full bg-[#febc2e]" />
             <div className="w-3 h-3 rounded-full bg-[#28c840]" />
           </div>
-          <span
-            className="ml-2 text-xs font-mono"
-            style={{ color: "var(--color-text-muted)" }}
-          >
+          <span className="ml-2 text-xs font-mono opacity-60">
             daniel@portfolio — zsh
           </span>
         </div>
