@@ -125,10 +125,13 @@ body {
   color: var(--color-surface);
 }
 
-/* Smooth transitions */
-*,
-*::before,
-*::after {
+/* Smooth transitions for interactive elements only */
+a,
+button,
+input,
+textarea,
+select,
+.card-interactive {
   transition-property: background-color, border-color, color, fill, stroke, box-shadow, transform;
   transition-duration: 200ms;
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
