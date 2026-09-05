@@ -1,0 +1,49 @@
+---
+// Fixed parallax backdrop: code glyphs in two depth layers. Each layer
+// scrolls at a different speed via CSS scroll-driven animations (zero JS);
+// browsers without support still get the gentle time-based float.
+// Masked to the page edges so glyphs never sit behind text.
+interface Glyph {
+  char: string;
+  x: number; // left %
+  y: number; // top %
+  size: number; // px
+  dur: number; // float duration s
+  delay: number; // negative = start mid-cycle, avoids sync
+  opacity: number;
+}
+
+const farGlyphs: Glyph[] = [
+  { char: "{}", x: 6, y: 14, size: 13, dur: 22, delay: -3, opacity: 0.05 },
+  { char: "=>", x: 13, y: 32, size: 12, dur: 26, delay: -8, opacity: 0.045 },
+  { char: ";", x: 8, y: 58, size: 14, dur: 20, delay: -5, opacity: 0.055 },
+  { char: "[]", x: 16, y: 76, size: 12, dur: 24, delay: -11, opacity: 0.05 },
+  { char: "&&", x: 88, y: 10, size: 13, dur: 25, delay: -6, opacity: 0.05 },
+  { char: "#", x: 93, y: 38, size: 12, dur: 21, delay: -2, opacity: 0.045 },
+  { char: ":=", x: 86, y: 64, size: 14, dur: 27, delay: -9, opacity: 0.055 },
+  { char: "~", x: 91, y: 86, size: 13, dur: 19, delay: -4, opacity: 0.05 },
+];
+
+const nearGlyphs: Glyph[] = [
+  { char: "</>", x: 9, y: 22, size: 22, dur: 18, delay: -2, opacity: 0.07 },
+  { char: "$_", x: 5, y: 46, size: 19, dur: 23, delay: -7, opacity: 0.065 },
+  { char: "()", x: 14, y: 68, size: 20, dur: 17, delay: -12, opacity: 0.07 },
+  { char: "//", x: 7, y: 88, size: 18, dur: 21, delay: -5, opacity: 0.065 },
+  { char: ">_", x: 90, y: 20, size: 24, dur: 19, delay: -9, opacity: 0.075 },
+  { char: "200", x: 84, y: 50, size: 18, dur: 24, delay: -3, opacity: 0.065 },
+  { char: "||", x: 94, y: 72, size: 20, dur: 18, delay: -6, opacity: 0.07 },
+  { char: "{ }", x: 87, y: 92, size: 22, dur: 22, delay: -10, opacity: 0.07 },
+];
+
+const glyphStyle = (g: Glyph) =>
+  `left:${g.x}%;top:${g.y}%;font-size:${g.size}px;--g-dur:${g.dur}s;--g-delay:${g.delay}s;--g-opacity:${g.opacity}`;
+---
+
+<div class="code-backdrop" aria-hidden="true">
+  <div class="backdrop-layer backdrop-far">
+    {farGlyphs.map((g) => <span class="backdrop-glyph" style={glyphStyle(g)}>{g.char}</span>)}
+  </div>
+  <div class="backdrop-layer backdrop-near">
+    {nearGlyphs.map((g) => <span class="backdrop-glyph" style={glyphStyle(g)}>{g.char}</span>)}
+  </div>
+</div>

@@ -2,7 +2,7 @@
 title: "RexBuy E-commerce"
 description: "E-commerce fullstack con autenticación, roles de usuario, integración de PayPal, carrito de compras, reseñas, favoritos, búsqueda de productos y chatbot con OpenAI API."
 tech: ["Next.js", "MongoDB", "Node.js", "Docker", "TypeScript", "OpenAI"]
-github: "https://github.com/DANIELSSF"
+github: "https://github.com/DANIELSSF/RexBuy"
 live: "https://rex-buy.vercel.app/"
 featured: true
 order: 1

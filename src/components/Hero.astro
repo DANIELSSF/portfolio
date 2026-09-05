@@ -6,34 +6,36 @@ const lang = getLangFromUrl(Astro.url);
 ---
 
 <section id="hero" class="relative flex min-h-screen items-center justify-center overflow-hidden px-6 pt-20">
-  <div class="pointer-events-none absolute inset-0">
-    <div class="absolute left-[20%] bottom-[-10%] h-[600px] w-[500px] rotate-12 rounded-full bg-sky-500/[0.035] blur-[150px]"></div>
-    <div class="absolute right-[25%] bottom-[-8%] h-[550px] w-[450px] rotate-3 rounded-full bg-emerald-400/[0.02] blur-[140px]"></div>
+  <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+    <div class="hero-grid absolute inset-0"></div>
+    <div class="hero-blob-a absolute left-[20%] bottom-[-10%] h-[600px] w-[500px] rounded-full bg-sky-500/[0.04] blur-[150px]"></div>
+    <div class="hero-blob-b absolute right-[25%] bottom-[-8%] h-[550px] w-[450px] rounded-full bg-emerald-400/[0.025] blur-[140px]"></div>
   </div>
 
   <div class="relative z-10 mx-auto max-w-4xl w-full">
     <div class="mb-6 text-center">
-      <p class="mb-3 inline-flex items-center gap-2 rounded-full border border-border bg-surface-elevated px-4 py-1.5 text-xs font-medium text-accent">
+      <p class="hero-enter mb-3 inline-flex items-center gap-2 rounded-full border border-border bg-surface-elevated px-4 py-1.5 text-xs font-medium text-accent">
         <span class="relative flex h-2 w-2">
           <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
           <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
         </span>
         {t(lang, "hero.available")}
       </p>
-      <h1 class="mb-2 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+      <h1 class="hero-enter mb-2 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl" style="--enter-delay: 0.08s">
         <span class="text-text-heading">Daniel Santiago</span><br />
-        <span class="text-title-section">Silva Fonseca</span>
+        <span class="text-gradient">Silva Fonseca</span>
       </h1>
-      <p class="text-lg font-medium text-accent">
+      <p class="hero-enter text-lg font-medium text-accent" style="--enter-delay: 0.16s">
         {t(lang, "hero.role")}
       </p>
     </div>
 
-    <div class="mb-4">
+    <div class="hero-enter mb-4" style="--enter-delay: 0.26s">
       <TerminalHero
         lang={lang}
         ctaLabel={t(lang, "hero.cta")}
         downloadLabel={t(lang, "hero.download")}
+        aboutText={t(lang, "terminal.aboutText")}
         client:load
       />
     </div>

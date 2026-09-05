@@ -229,10 +229,6 @@ select,
    Liquid Glass Button — Water Drop
    ============================================ */
 
-.liquid-btn-wrapper {
-  display: inline-block;
-}
-
 .liquid-btn {
   cursor: pointer;
   -webkit-backdrop-filter: blur(24px) saturate(1.4);
@@ -276,16 +272,6 @@ select,
     0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
-/* Specular highlight — cursor-tracking refraction */
-.liquid-specular {
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.35) 0%,
-    rgba(255, 255, 255, 0.08) 40%,
-    transparent 70%
-  );
-}
-
 /* --- Light mode: frosted clear glass --- */
 
 :root.light .liquid-btn-primary {
@@ -321,15 +307,6 @@ select,
     inset 0 1px 2px rgba(255, 255, 255, 0.85),
     0 4px 20px rgba(0, 0, 0, 0.08),
     0 0 0 1px rgba(0, 0, 0, 0.06);
-}
-
-:root.light .liquid-specular {
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.9) 0%,
-    rgba(255, 255, 255, 0.3) 40%,
-    transparent 70%
-  );
 }
 
 /* Page transition */
@@ -422,6 +399,9 @@ html {
 .terminal-window {
   background: var(--color-terminal-window-bg);
   border-color: var(--color-terminal-frame-border);
+  box-shadow:
+    0 25px 60px -12px rgba(0, 0, 0, 0.5),
+    0 0 90px -30px var(--color-glow-border);
 }
 
 .terminal-frame {
@@ -538,25 +518,19 @@ html {
   background: var(--color-glow-bg);
 }
 
-/* ── Monochrome icons (white from CDN) ── */
+/* ── Inline brand icons (simple-icons, fill: currentColor) ── */
 .skill-icon {
   width: 16px;
   height: 16px;
   flex-shrink: 0;
-  opacity: 0.65;
-  transition: opacity 0.2s ease, filter 0.2s ease;
-}
-
-:root.light .skill-icon {
-  filter: invert(1);
+  color: var(--color-text-secondary);
+  opacity: 0.8;
+  transition: color 0.2s ease, opacity 0.2s ease;
 }
 
 .skill-pill:hover .skill-icon {
+  color: var(--color-accent);
   opacity: 1;
-  filter: brightness(0) invert(0.72) sepia(1) saturate(4) hue-rotate(170deg);
-}
-:root.light .skill-pill:hover .skill-icon {
-  filter: brightness(0) invert(0.15) sepia(1) saturate(5) hue-rotate(170deg);
 }
 
 /* ── Fallback SVG icon ── */
@@ -573,6 +547,345 @@ html {
   opacity: 1;
 }
 
+/* ============================================
+   Focus visibility
+   ============================================ */
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* The terminal input draws its own block cursor as focus indicator */
+.terminal-body input:focus-visible {
+  outline: none;
+}
+
+/* ============================================
+   Scroll progress bar — pure CSS, zero JS.
+   Invisible (scaleX(0)) in browsers without
+   scroll-driven animation support.
+   ============================================ */
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 60;
+  height: 2px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, var(--color-title-section), var(--color-accent));
+  pointer-events: none;
+}
+
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    animation: scroll-progress-grow linear both;
+    animation-timeline: scroll(root);
+  }
+}
+
+@keyframes scroll-progress-grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* ============================================
+   Scroll reveal — CSS transitions driven by one
+   IntersectionObserver (Layout.astro). Hidden
+   states only apply when JS is available AND the
+   user allows motion, so content is never trapped
+   invisible.
+   ============================================ */
+
+@media (prefers-reduced-motion: no-preference) {
+  html.js [data-reveal]:not(.in-view),
+  html.js [data-reveal-group]:not(.in-view) [data-reveal-child] {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+
+  html.js [data-reveal],
+  html.js [data-reveal-group] [data-reveal-child] {
+    transition:
+      opacity 0.8s var(--ease-expo-out) var(--reveal-delay, 0s),
+      transform 0.8s var(--ease-expo-out) var(--reveal-delay, 0s);
+  }
+}
+
+/* ============================================
+   Hero — entrance choreography + ambient motion
+   ============================================ */
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-enter {
+    animation: hero-rise 0.9s var(--ease-expo-out) var(--enter-delay, 0s) both;
+  }
+
+  .hero-blob-a {
+    animation: blob-drift 20s ease-in-out infinite;
+  }
+
+  .hero-blob-b {
+    animation: blob-drift 26s ease-in-out infinite reverse;
+  }
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+}
+
+@keyframes blob-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(10deg) scale(1); }
+  50% { transform: translate3d(50px, -36px, 0) rotate(16deg) scale(1.07); }
+}
+
+.hero-grid {
+  background-image: radial-gradient(var(--color-dot-bg) 1px, transparent 1px);
+  background-size: 26px 26px;
+  opacity: 0.45;
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 38%, black 25%, transparent 72%);
+  -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 38%, black 25%, transparent 72%);
+}
+
+/* Gradient headline */
+.text-gradient {
+  background: linear-gradient(90deg, var(--color-title-section), var(--color-accent-hover));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ============================================
+   Code backdrop — fixed parallax glyph layers.
+   Pure CSS: time-based float everywhere, plus
+   scroll-driven depth where supported. Masked to
+   the page edges; hidden on mobile (readability
+   + battery).
+   ============================================ */
+
+.code-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: none;
+  overflow: hidden;
+  pointer-events: none;
+  mask-image: linear-gradient(to right, black 0%, black 16%, transparent 30%, transparent 70%, black 84%, black 100%);
+  -webkit-mask-image: linear-gradient(to right, black 0%, black 16%, transparent 30%, transparent 70%, black 84%, black 100%);
+}
+
+@media (min-width: 768px) {
+  .code-backdrop {
+    display: block;
+  }
+}
+
+.backdrop-layer {
+  position: absolute;
+  inset: -12% 0;
+}
+
+.backdrop-glyph {
+  position: absolute;
+  font-family: var(--font-mono);
+  color: var(--color-accent);
+  opacity: var(--g-opacity, 0.06);
+  white-space: nowrap;
+  user-select: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .backdrop-glyph {
+    animation: glyph-float var(--g-dur, 20s) ease-in-out var(--g-delay, 0s) infinite;
+  }
+
+  @supports (animation-timeline: scroll()) {
+    .backdrop-layer {
+      animation: backdrop-rise linear both;
+      animation-timeline: scroll(root);
+      will-change: transform;
+    }
+
+    .backdrop-far {
+      --rise: -110px;
+    }
+
+    .backdrop-near {
+      --rise: -260px;
+    }
+  }
+}
+
+@keyframes glyph-float {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: var(--g-opacity, 0.06);
+  }
+  50% {
+    transform: translateY(-16px);
+    opacity: calc(var(--g-opacity, 0.06) * 1.7);
+  }
+}
+
+@keyframes backdrop-rise {
+  to {
+    transform: translateY(var(--rise, -150px));
+  }
+}
+
+/* ============================================
+   Section header — code-comment label
+   ============================================ */
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.03em;
+  color: var(--color-accent);
+}
+
+/* ============================================
+   Section cards — shared base (dark default,
+   light overrides above)
+   ============================================ */
+
+.section-card {
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(24, 24, 27, 0.4);
+  transition:
+    transform 0.3s var(--ease-expo-out),
+    border-color 0.3s var(--ease-expo-out),
+    background-color 0.3s var(--ease-expo-out),
+    box-shadow 0.3s var(--ease-expo-out);
+}
+
+.section-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 25px rgba(30, 58, 138, 0.2);
+}
+
+.section-card:active {
+  transform: scale(0.98);
+}
+
+/* ============================================
+   Service status chips (Experience)
+   ============================================ */
+
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border);
+  padding: 0.2rem 0.65rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.status-running {
+  color: #34d399;
+  border-color: rgba(52, 211, 153, 0.3);
+  background: rgba(52, 211, 153, 0.08);
+}
+
+:root.light .status-running {
+  color: #047857;
+  border-color: rgba(4, 120, 87, 0.35);
+  background: rgba(4, 120, 87, 0.07);
+}
+
+.status-exit {
+  color: var(--color-text-secondary);
+}
+
+.status-dot {
+  position: relative;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: currentColor;
+}
+
+.status-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: currentColor;
+  animation: status-ping 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes status-ping {
+  0% { transform: scale(1); opacity: 0.7; }
+  75%, 100% { transform: scale(2.8); opacity: 0; }
+}
+
+/* ============================================
+   Endpoint header (Projects)
+   ============================================ */
+
+.endpoint {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px dashed var(--color-border);
+}
+
+.endpoint-method {
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--color-accent);
+}
+
+.endpoint-path {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--color-text-secondary);
+}
+
+.endpoint-status {
+  margin-left: auto;
+  white-space: nowrap;
+  color: #34d399;
+}
+
+:root.light .endpoint-status {
+  color: #047857;
+}
+
+/* ============================================
+   Contact ping line
+   ============================================ */
+
+.ping-line {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+.ping-ok {
+  color: #34d399;
+}
+
+:root.light .ping-ok {
+  color: #047857;
+}
+
 /* Reduced motion: respect user preference */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -581,5 +894,14 @@ html {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .section-card:hover,
+  .section-card:active {
+    transform: none;
   }
 }

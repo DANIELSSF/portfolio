@@ -1,5 +1,7 @@
 ---
+import SectionHeader from "./SectionHeader.astro";
 import { getLangFromUrl, t } from "@/i18n/translations";
+
 const lang = getLangFromUrl(Astro.url);
 
 const experiences = [
@@ -9,6 +11,7 @@ const experiences = [
     period: t(lang, "exp.estrellas.period"),
     description: [t(lang, "exp.estrellas.desc1"), t(lang, "exp.estrellas.desc2"), t(lang, "exp.estrellas.desc3"), t(lang, "exp.estrellas.desc4")],
     tech: ["Node.js", "TypeScript", "Go", "GCP", "MongoDB", "PostgreSQL"],
+    current: true,
   },
   {
     company: t(lang, "exp.fox.company"),
@@ -16,6 +19,7 @@ const experiences = [
     period: t(lang, "exp.fox.period"),
     description: [t(lang, "exp.fox.desc1"), t(lang, "exp.fox.desc2")],
     tech: ["NestJS", "ReactJS", "MySQL", "OpenAI", "Meta API", "AWS S3"],
+    current: false,
   },
   {
     company: t(lang, "exp.tcc.company"),
@@ -23,6 +27,7 @@ const experiences = [
     period: t(lang, "exp.tcc.period"),
     description: [t(lang, "exp.tcc.desc1"), t(lang, "exp.tcc.desc2")],
     tech: ["NestJS", "AstroJS", "PostgreSQL", "Pasarela de Pagos"],
+    current: false,
   },
   {
     company: t(lang, "exp.gsm.company"),
@@ -30,31 +35,40 @@ const experiences = [
     period: t(lang, "exp.gsm.period"),
     description: [t(lang, "exp.gsm.desc1")],
     tech: ["AstroJS", "Tailwind CSS", "Node.js", "SEO"],
+    current: false,
   },
 ];
 ---
 
 <section id="experience" class="py-24 px-6">
   <div class="mx-auto max-w-5xl">
-    <h2 class="mb-2 text-sm font-semibold uppercase tracking-widest text-accent">{t(lang, "experience.subtitle")}</h2>
-    <h3 class="mb-12 text-3xl font-bold tracking-tight text-title-section sm:text-4xl">{t(lang, "experience.title")}</h3>
+    <SectionHeader index="02" label={t(lang, "experience.subtitle")} title={t(lang, "experience.title")} />
 
     <div class="relative">
       <div class="absolute left-0 top-0 hidden h-full w-px bg-gradient-to-b from-accent/40 via-accent/15 to-accent/5 md:block md:left-[7px]"></div>
       <div class="space-y-12">
         {experiences.map((exp) => (
-          <article class="group relative md:pl-12">
+          <article class="group relative md:pl-12" data-reveal>
             <div class="absolute left-0 top-1.5 hidden h-[15px] w-[15px] items-center justify-center md:flex">
               <div class="h-3 w-3 rounded-full border-2 border-accent/60 bg-accent/10 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:border-accent group-hover:bg-accent/40 group-hover:shadow-[0_0_8px_var(--color-glow-shadow)]" />
             </div>
 
-            <div class="section-card card-interactive rounded-xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900/40 p-6 shadow-sm dark:shadow-none transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:shadow-md hover:border-zinc-300 dark:hover:border-white/20 dark:hover:shadow-[0_0_25px_rgba(30,58,138,0.2)] active:scale-[0.98] motion-reduce:transition-none motion-reduce:hover:transform-none">
-              <div class="mb-4 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+            <div class="section-card card-interactive p-6">
+              <div class="mb-4 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                 <div>
-                  <h4 class="text-lg font-bold text-black dark:text-white transition-colors duration-200">{exp.company}</h4>
+                  <h3 class="text-lg font-bold text-text-heading">{exp.company}</h3>
                   <p class="text-sm text-accent-muted">{exp.role}</p>
                 </div>
-                <time class="text-sm text-text-accent-soft font-mono">{exp.period}</time>
+                <div class="flex items-center gap-3 sm:flex-row-reverse">
+                  {exp.current ? (
+                    <span class="status-chip status-running">
+                      <span class="status-dot" aria-hidden="true"></span>running
+                    </span>
+                  ) : (
+                    <span class="status-chip status-exit">exit 0</span>
+                  )}
+                  <time class="text-sm text-text-accent-soft font-mono">{exp.period}</time>
+                </div>
               </div>
 
               <ul class="mb-4 space-y-2">

@@ -10,7 +10,7 @@ interface TerminalLine {
 
 const SCRIPT_LINES = [
   { command: "whoami", output: "Daniel Santiago Silva Fonseca" },
-  { command: "cat role.txt", output: "Full Stack Engineer" },
+  { command: "cat role.txt", output: "Backend Engineer" },
   { command: "cat stack.json | jq '.main'", output: '"Node.js, NestJS, TypeScript, Go"' },
   { command: "echo $CLOUD", output: "GCP · AWS · Docker" },
   { command: "cat passion.md", output: "AI integration · Chatbots · LLM · Automation" },
@@ -27,10 +27,10 @@ const HELP_ROWS: { cmd: string; desc: string }[] = [
 
 const SECTIONS = ["about", "experience", "projects", "skills", "education", "contact"];
 
-const ABOUT_TEXT = [
+const DEFAULT_ABOUT_TEXT = [
   "# about.md",
   "",
-  "Full Stack Engineer con experiencia en el diseño y",
+  "Backend Engineer con experiencia en el diseño y",
   "desarrollo de soluciones backend escalables, APIs",
   "RESTful y arquitecturas de microservicios.",
   "",
@@ -48,9 +48,11 @@ interface Props {
   lang?: string;
   ctaLabel?: string;
   downloadLabel?: string;
+  aboutText?: string;
 }
 
-export default function TerminalHero({ ctaLabel, downloadLabel }: Props) {
+export default function TerminalHero({ ctaLabel, downloadLabel, aboutText }: Props) {
+  const aboutLines = aboutText ? aboutText.split("\n") : DEFAULT_ABOUT_TEXT;
   const [history, setHistory] = useState<TerminalLine[]>([]);
   const [currentTyping, setCurrentTyping] = useState("");
   const [showTypingOutput, setShowTypingOutput] = useState(false);
@@ -179,7 +181,7 @@ export default function TerminalHero({ ctaLabel, downloadLabel }: Props) {
         newLines.push({ type: "output", text: `Try: ${SECTIONS.join(", ")}` });
       }
     } else if (trimmed === "cat about.md") {
-      ABOUT_TEXT.forEach((l) => newLines.push({ type: "output", text: l }));
+      aboutLines.forEach((l) => newLines.push({ type: "output", text: l }));
     } else if (trimmed === "") {
       // empty command
     } else {
@@ -232,7 +234,7 @@ export default function TerminalHero({ ctaLabel, downloadLabel }: Props) {
   return (
     <div className="w-full max-w-2xl mx-auto">
       {/* Terminal window */}
-      <div className="terminal-window rounded-xl border overflow-hidden shadow-2xl">
+      <div className="terminal-window rounded-xl border overflow-hidden">
         {/* macOS title bar — adapts to theme */}
         <div className="terminal-frame flex items-center gap-2 px-4 py-3 border-b select-none">
           <div className="flex gap-1.5">

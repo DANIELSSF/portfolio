@@ -30,3 +30,6 @@ npm-debug.log*
 # Agents
 .agents/
 skills-lock.json
+# Local working files (not part of the site)
+/daniel.pdf
+/task.md

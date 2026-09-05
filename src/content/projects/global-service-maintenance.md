@@ -2,7 +2,7 @@
 title: "Global Service Maintenance"
 description: "Aplicación web empresarial con información de servicios, sistema de booking, cotizaciones y SEO optimizado."
 tech: ["Astro.js", "Tailwind CSS", "Node.js", "SEO"]
-github: "https://github.com/DANIELSSF"
+github: "https://github.com/DANIELSSF/global-services-page"
 featured: true
 order: 2
 ---

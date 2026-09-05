@@ -20,7 +20,7 @@ export const translations = {
 
     // Hero
     'hero.available': 'Disponible para trabajo remoto',
-    'hero.role': 'Full Stack Engineer',
+    'hero.role': 'Backend Engineer',
     'hero.description':
       'Especializado en Node.js, NestJS, Go, TypeScript y ecosistemas cloud (GCP, AWS). Apasionado por la integración de inteligencia artificial en productos reales, incluyendo chatbots, automatización de flujos y modelos LLM.',
     'hero.cta': 'Ver experiencia',
@@ -30,13 +30,15 @@ export const translations = {
     'terminal.cmd1': 'whoami',
     'terminal.out1': 'Daniel Santiago Silva Fonseca',
     'terminal.cmd2': 'cat role.txt',
-    'terminal.out2': 'Full Stack Engineer',
+    'terminal.out2': 'Backend Engineer',
     'terminal.cmd3': "cat stack.json | jq '.main'",
     'terminal.out3': '"Node.js, NestJS, TypeScript, Go"',
     'terminal.cmd4': 'echo $CLOUD',
     'terminal.out4': 'GCP · AWS · Docker',
     'terminal.cmd5': 'cat passion.md',
     'terminal.out5': 'AI integration · Chatbots · LLM · Automation',
+    'terminal.aboutText':
+      '# about.md\n\nBackend Engineer con experiencia en el diseño y\ndesarrollo de soluciones backend escalables, APIs\nRESTful y arquitecturas de microservicios.\n\nEspecializado en Node.js, NestJS, TypeScript y\necosistemas cloud (GCP, AWS). Apasionado por la\nintegración de IA en productos reales.\n\nUbicación: Sogamoso, Colombia\nDisponible para trabajo remoto',
 
     // About
     'about.subtitle': 'Sobre mí',
@@ -61,8 +63,8 @@ export const translations = {
       'Colas de mensajes, arquitectura orientada a eventos y patrones de microservicios.',
     'about.stat1': 'Años de experiencia',
     'about.stat2': 'Proyectos completados',
-    'about.stat3': 'Tecnologías dominadas',
-    'about.stat4': 'Clientes satisfechos',
+    'about.stat3': 'Mejora en gestión de tareas',
+    'about.stat4': 'Empresas',
 
     // Experience
     'experience.subtitle': 'Trayectoria',
@@ -130,7 +132,9 @@ export const translations = {
     'contact.title': 'Trabajemos juntos',
     'contact.available': 'Disponible para trabajo remoto',
     'contact.description':
-      'Full Stack Engineer con sede en Sogamoso, Colombia. Comprometido con buenas prácticas de ingeniería, principios SOLID, CI/CD y entrega continua de valor al negocio.',
+      'Backend Engineer con sede en Sogamoso, Colombia. Comprometido con buenas prácticas de ingeniería, principios SOLID, CI/CD y entrega continua de valor al negocio.',
+    'contact.ping': 'respuesta < 24h',
+    'contact.languages': 'ES nativo · EN B1+',
 
     // Metrics
     'metrics.title': 'Impacto',
@@ -154,7 +158,7 @@ export const translations = {
 
     // Hero
     'hero.available': 'Available for remote work',
-    'hero.role': 'Full Stack Engineer',
+    'hero.role': 'Backend Engineer',
     'hero.description':
       'Specialized in Node.js, NestJS, TypeScript and cloud ecosystems (GCP, AWS). Passionate about integrating artificial intelligence into real products, including chatbots, workflow automation and LLM models.',
     'hero.cta': 'View experience',
@@ -164,13 +168,15 @@ export const translations = {
     'terminal.cmd1': 'whoami',
     'terminal.out1': 'Daniel Santiago Silva Fonseca',
     'terminal.cmd2': 'cat role.txt',
-    'terminal.out2': 'Full Stack Engineer',
+    'terminal.out2': 'Backend Engineer',
     'terminal.cmd3': "cat stack.json | jq '.main'",
     'terminal.out3': '"Node.js, NestJS, TypeScript, Go"',
     'terminal.cmd4': 'echo $CLOUD',
     'terminal.out4': 'GCP · AWS · Docker',
     'terminal.cmd5': 'cat passion.md',
     'terminal.out5': 'AI integration · Chatbots · LLM · Automation',
+    'terminal.aboutText':
+      '# about.md\n\nBackend Engineer experienced in designing and\nbuilding scalable backend solutions, RESTful APIs\nand microservice architectures.\n\nSpecialized in Node.js, NestJS, TypeScript and\ncloud ecosystems (GCP, AWS). Passionate about\nintegrating AI into real products.\n\nLocation: Sogamoso, Colombia\nAvailable for remote work',
 
     // About
     'about.subtitle': 'About me',
@@ -195,8 +201,8 @@ export const translations = {
       'Message queues, event-driven architecture, and microservices patterns.',
     'about.stat1': 'Years of experience',
     'about.stat2': 'Projects completed',
-    'about.stat3': 'Technologies mastered',
-    'about.stat4': 'Satisfied clients',
+    'about.stat3': 'Task management boost',
+    'about.stat4': 'Companies',
 
     // Experience
     'experience.subtitle': 'Career',
@@ -265,7 +271,9 @@ export const translations = {
     'contact.title': "Let's work together",
     'contact.available': 'Available for remote work',
     'contact.description':
-      'Full Stack Engineer based in Sogamoso, Colombia. Committed to engineering best practices, SOLID principles, CI/CD and continuous value delivery.',
+      'Backend Engineer based in Sogamoso, Colombia. Committed to engineering best practices, SOLID principles, CI/CD and continuous value delivery.',
+    'contact.ping': 'response < 24h',
+    'contact.languages': 'ES native · EN B1+',
 
     // Metrics
     'metrics.title': 'Impact',

@@ -1,242 +1,93 @@
 ---
+import SectionHeader from "./SectionHeader.astro";
+import MarqueeRow from "./MarqueeRow.astro";
 import { getLangFromUrl, t } from "@/i18n/translations";
+import {
+  siJavascript,
+  siTypescript,
+  siGo,
+  siNodedotjs,
+  siNestjs,
+  siExpress,
+  siSwagger,
+  siReact,
+  siNextdotjs,
+  siAstro,
+  siTailwindcss,
+  siMongodb,
+  siPostgresql,
+  siMysql,
+  siGooglecloud,
+  siDocker,
+  siGit,
+  siGithub,
+  siAnthropic,
+  siMeta,
+  siGooglecalendar,
+  siPaypal,
+} from "simple-icons";
+
 const lang = getLangFromUrl(Astro.url);
 
 interface Skill {
   name: string;
-  slug: string | null;
+  iconPath: string | null;
 }
 
 /* ── Row 1: Languages + Backend ── */
 const row1: Skill[] = [
-  { name: "JavaScript", slug: "javascript" },
-  { name: "TypeScript", slug: "typescript" },
-  { name: "Go", slug: "go" },
-  { name: "SQL", slug: null },
-  { name: "NoSQL", slug: null },
-  { name: "Node.js", slug: "nodedotjs" },
-  { name: "NestJS", slug: "nestjs" },
-  { name: "Express", slug: "express" },
-  { name: "REST APIs", slug: null },
-  { name: "Microservicios", slug: null },
-  { name: "SOLID", slug: null },
-  { name: "Clean Code", slug: null },
-  { name: "Swagger", slug: "swagger" },
+  { name: "JavaScript", iconPath: siJavascript.path },
+  { name: "TypeScript", iconPath: siTypescript.path },
+  { name: "Go", iconPath: siGo.path },
+  { name: "SQL", iconPath: null },
+  { name: "NoSQL", iconPath: null },
+  { name: "Node.js", iconPath: siNodedotjs.path },
+  { name: "NestJS", iconPath: siNestjs.path },
+  { name: "Express", iconPath: siExpress.path },
+  { name: "REST APIs", iconPath: null },
+  { name: "Microservicios", iconPath: null },
+  { name: "SOLID", iconPath: null },
+  { name: "Clean Code", iconPath: null },
+  { name: "Swagger", iconPath: siSwagger.path },
 ];
 
 /* ── Row 2: Frontend + Databases ── */
 const row2: Skill[] = [
-  { name: "React", slug: "react" },
-  { name: "Next.js", slug: "nextdotjs" },
-  { name: "Astro", slug: "astro" },
-  { name: "Tailwind CSS", slug: "tailwindcss" },
-  { name: "MongoDB", slug: "mongodb" },
-  { name: "PostgreSQL", slug: "postgresql" },
-  { name: "MySQL", slug: "mysql" },
-  { name: "OracleSQL", slug: null },
+  { name: "React", iconPath: siReact.path },
+  { name: "Next.js", iconPath: siNextdotjs.path },
+  { name: "Astro", iconPath: siAstro.path },
+  { name: "Tailwind CSS", iconPath: siTailwindcss.path },
+  { name: "MongoDB", iconPath: siMongodb.path },
+  { name: "PostgreSQL", iconPath: siPostgresql.path },
+  { name: "MySQL", iconPath: siMysql.path },
+  { name: "OracleSQL", iconPath: null },
 ];
 
 /* ── Row 3: Cloud & DevOps + Integrations ── */
 const row3: Skill[] = [
-  { name: "GCP", slug: "googlecloud" },
-  { name: "AWS", slug: null },
-  { name: "Docker", slug: "docker" },
-  { name: "Git", slug: "git" },
-  { name: "GitHub", slug: "github" },
-  { name: "OpenAI API", slug: null },
-  { name: "Claude Code", slug: "anthropic" },
-  { name: "Meta API", slug: "meta" },
-  { name: "Google Calendar", slug: "googlecalendar" },
-  { name: "PayPal", slug: "paypal" },
-  { name: "LLM Workflows", slug: null },
-  { name: "MCP Integration", slug: null },
+  { name: "GCP", iconPath: siGooglecloud.path },
+  { name: "AWS", iconPath: null },
+  { name: "Docker", iconPath: siDocker.path },
+  { name: "Git", iconPath: siGit.path },
+  { name: "GitHub", iconPath: siGithub.path },
+  { name: "OpenAI API", iconPath: null },
+  { name: "Claude Code", iconPath: siAnthropic.path },
+  { name: "Meta API", iconPath: siMeta.path },
+  { name: "Google Calendar", iconPath: siGooglecalendar.path },
+  { name: "PayPal", iconPath: siPaypal.path },
+  { name: "LLM Workflows", iconPath: null },
+  { name: "MCP Integration", iconPath: null },
 ];
-
-const iconUrl = (slug: string) => `https://cdn.simpleicons.org/${slug}/white`;
 ---
 
 <section id="skills" class="py-24">
   <div class="mx-auto max-w-5xl px-6">
-    <h2 class="mb-2 text-sm font-semibold uppercase tracking-widest text-accent">{t(lang, "skills.subtitle")}</h2>
-    <h3 class="text-3xl font-bold tracking-tight text-title-section sm:text-4xl">{t(lang, "skills.title")}</h3>
+    <SectionHeader index="04" label={t(lang, "skills.subtitle")} title={t(lang, "skills.title")} />
   </div>
 
-  {/* ── Marquee container (global CSS) ── */}
-  <div class="marquee-container">
-
-    {/* Row 1: scroll left (marquee-track) */}
-    <div class="marquee-track">
-      <div class="marquee-content">
-        {row1.map((skill) => (
-          <span class="skill-pill">
-            {skill.slug ? (
-              <img
-                src={iconUrl(skill.slug)}
-                alt=""
-                width="20"
-                height="20"
-                loading="lazy"
-                class="skill-icon"
-                onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"
-              />
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="skill-icon-fallback" style="display:none">
-                <polyline points="16 18 22 12 16 6" />
-                <polyline points="8 6 2 12 8 18" />
-              </svg>
-            ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="skill-icon-fallback">
-                <polyline points="16 18 22 12 16 6" />
-                <polyline points="8 6 2 12 8 18" />
-              </svg>
-            )}
-            <span>{skill.name}</span>
-          </span>
-        ))}
-      </div>
-      <div class="marquee-content" aria-hidden="true">
-        {row1.map((skill) => (
-          <span class="skill-pill">
-            {skill.slug ? (
-              <img
-                src={iconUrl(skill.slug)}
-                alt=""
-                width="20"
-                height="20"
-                loading="lazy"
-                class="skill-icon"
-                onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"
-              />
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="skill-icon-fallback" style="display:none">
-                <polyline points="16 18 22 12 16 6" />
-                <polyline points="8 6 2 12 8 18" />
-              </svg>
-            ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="skill-icon-fallback">
-                <polyline points="16 18 22 12 16 6" />
-                <polyline points="8 6 2 12 8 18" />
-              </svg>
-            )}
-            <span>{skill.name}</span>
-          </span>
-        ))}
-      </div>
-    </div>
-
-    {/* Row 2: scroll right (marquee-track-reverse) */}
-    <div class="marquee-track-reverse">
-      <div class="marquee-content">
-        {row2.map((skill) => (
-          <span class="skill-pill">
-            {skill.slug ? (
-              <img
-                src={iconUrl(skill.slug)}
-                alt=""
-                width="20"
-                height="20"
-                loading="lazy"
-                class="skill-icon"
-                onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"
-              />
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="skill-icon-fallback" style="display:none">
-                <polyline points="16 18 22 12 16 6" />
-                <polyline points="8 6 2 12 8 18" />
-              </svg>
-            ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="skill-icon-fallback">
-                <polyline points="16 18 22 12 16 6" />
-                <polyline points="8 6 2 12 8 18" />
-              </svg>
-            )}
-            <span>{skill.name}</span>
-          </span>
-        ))}
-      </div>
-      <div class="marquee-content" aria-hidden="true">
-        {row2.map((skill) => (
-          <span class="skill-pill">
-            {skill.slug ? (
-              <img
-                src={iconUrl(skill.slug)}
-                alt=""
-                width="20"
-                height="20"
-                loading="lazy"
-                class="skill-icon"
-                onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"
-              />
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="skill-icon-fallback" style="display:none">
-                <polyline points="16 18 22 12 16 6" />
-                <polyline points="8 6 2 12 8 18" />
-              </svg>
-            ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="skill-icon-fallback">
-                <polyline points="16 18 22 12 16 6" />
-                <polyline points="8 6 2 12 8 18" />
-              </svg>
-            )}
-            <span>{skill.name}</span>
-          </span>
-        ))}
-      </div>
-    </div>
-
-    {/* Row 3: scroll left (marquee-track) */}
-    <div class="marquee-track">
-      <div class="marquee-content">
-        {row3.map((skill) => (
-          <span class="skill-pill">
-            {skill.slug ? (
-              <img
-                src={iconUrl(skill.slug)}
-                alt=""
-                width="20"
-                height="20"
-                loading="lazy"
-                class="skill-icon"
-                onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"
-              />
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="skill-icon-fallback" style="display:none">
-                <polyline points="16 18 22 12 16 6" />
-                <polyline points="8 6 2 12 8 18" />
-              </svg>
-            ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="skill-icon-fallback">
-                <polyline points="16 18 22 12 16 6" />
-                <polyline points="8 6 2 12 8 18" />
-              </svg>
-            )}
-            <span>{skill.name}</span>
-          </span>
-        ))}
-      </div>
-      <div class="marquee-content" aria-hidden="true">
-        {row3.map((skill) => (
-          <span class="skill-pill">
-            {skill.slug ? (
-              <img
-                src={iconUrl(skill.slug)}
-                alt=""
-                width="20"
-                height="20"
-                loading="lazy"
-                class="skill-icon"
-                onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"
-              />
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="skill-icon-fallback" style="display:none">
-                <polyline points="16 18 22 12 16 6" />
-                <polyline points="8 6 2 12 8 18" />
-              </svg>
-            ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="skill-icon-fallback">
-                <polyline points="16 18 22 12 16 6" />
-                <polyline points="8 6 2 12 8 18" />
-              </svg>
-            )}
-            <span>{skill.name}</span>
-          </span>
-        ))}
-      </div>
-    </div>
-
+  <div class="marquee-container" data-reveal>
+    <MarqueeRow skills={row1} />
+    <MarqueeRow skills={row2} reverse />
+    <MarqueeRow skills={row3} />
   </div>
 </section>

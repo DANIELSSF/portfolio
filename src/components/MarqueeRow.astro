@@ -1,0 +1,36 @@
+---
+interface Skill {
+  name: string;
+  iconPath: string | null;
+}
+
+interface Props {
+  skills: Skill[];
+  reverse?: boolean;
+}
+
+const { skills, reverse = false } = Astro.props;
+---
+
+<div class={reverse ? "marquee-track-reverse" : "marquee-track"}>
+  {/* Content rendered twice for the seamless loop; the duplicate is aria-hidden */}
+  {[false, true].map((isDuplicate) => (
+    <div class="marquee-content" aria-hidden={isDuplicate || undefined}>
+      {skills.map((skill) => (
+        <span class="skill-pill">
+          {skill.iconPath ? (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" class="skill-icon" aria-hidden="true">
+              <path d={skill.iconPath} />
+            </svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="skill-icon-fallback" aria-hidden="true">
+              <polyline points="16 18 22 12 16 6" />
+              <polyline points="8 6 2 12 8 18" />
+            </svg>
+          )}
+          <span>{skill.name}</span>
+        </span>
+      ))}
+    </div>
+  ))}
+</div>
